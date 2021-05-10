@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 var fs = require('fs');
 const app = express();
 const httpServer = require("http").createServer(app);
