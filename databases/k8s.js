@@ -71,8 +71,7 @@ var insertdb = function (db,doc){
         console.error(error);
       });
       req.write(data);
-      req.end();
-    https.post();         
+      req.end();     
 }
 var searchuser = function (data, callback){
     return callback(data);         
