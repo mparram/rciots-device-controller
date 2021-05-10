@@ -8,7 +8,7 @@ var https = require('https');
 if (process.env.NAMESPACE){
     var namespace = process.env.NAMESPACE;
 }else{
-    var namespace = "rciots";
+    var namespace = "user2-qiothackfest";
 }
 var k8sca = fs.readFileSync('/var/run/secrets/kubernetes.io/serviceaccount/ca.crt', 'utf-8');
 var k8shostname = "openshift.default.svc.cluster.local";
