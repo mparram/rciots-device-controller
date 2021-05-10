@@ -15,6 +15,7 @@ const datastore = require("./databases/" + databaseType + ".js");
 //if (databaseType == "couchdb"){
 //    datastore.initdb();
 //}
+console.log(datastore);
 io.on('connection', function(socket){
     socket.hwid = socket.handshake.auth.hwid;
     console.log('client connected: ' + socket.hwid);
@@ -64,6 +65,7 @@ io.use((socket, next) => {
     console.log("token: " + token);
     console.log("hwid: " + socket.handshake.auth.hwid);
     datastore.searchtemplate(token, function(template){
+        console.log(template);
         if(template){
             datastore.searchuser(template.owner, function(user){
                 if(user){

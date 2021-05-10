@@ -78,6 +78,7 @@ var searchuser = function (data, callback){
     return callback(data);         
 }
 var searchtemplate = function (data, callback){
+    console.log("run k8s searchtemplate");
     var optionsConn = JSON.parse(JSON.stringify(templatesConn));
     optionsConn.method = "GET";
     optionsConn.path = optionsConn.path + data;
