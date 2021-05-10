@@ -85,15 +85,16 @@ var searchtemplate = function (data, callback){
     const req = https.request(optionsConn, res => {
         var datareq = [];
         res.on('data', d => {
-            if (res.statusCode == "404"){
-                console.log ("statuscode: " + res.statusCode);
-                return callback("template_not_found");
-            }
+
             datareq.push(d);
         }).on('end', function() {
             //at this point data is an array of Buffers
             //so Buffer.concat() can make us a new Buffer
             //of all of them together
+            if (res.statusCode == "404"){
+                console.log ("statuscode: " + res.statusCode);
+                return callback("template_not_found");
+            }
             var buffer = Buffer.concat(datareq);
             console.log(buffer);
             return callback(JSON.parse(buffer).spec);
@@ -113,14 +114,14 @@ var searchdevice = function(data, callback){
         var datareq = [];
         res.on('data', d => {
             console.log(res);
-            if (res.statusCode == "404"){
-                return callback("device_not_found");
-            }
           datareq.push(d);
         }).on('end', function() {
             //at this point data is an array of Buffers
             //so Buffer.concat() can make us a new Buffer
             //of all of them together
+            if (res.statusCode == "404"){
+                return callback("device_not_found");
+            }
             var buffer = Buffer.concat(datareq);
             return callback(JSON.parse(buffer).spec);
         });
