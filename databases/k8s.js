@@ -95,6 +95,7 @@ var searchtemplate = function (data, callback){
             //so Buffer.concat() can make us a new Buffer
             //of all of them together
             var buffer = Buffer.concat(datareq);
+            console.log(buffer);
             return callback(JSON.parse(buffer).spec);
         });
         req.on('error', error => {
