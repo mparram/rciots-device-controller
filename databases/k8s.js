@@ -45,7 +45,7 @@ var insertdb = function (db,doc){
     } else if (db === "devices"){
         var optionsConn = JSON.parse(JSON.stringify(devicesConn));
         var tempDevice = {};
-        var name = doc.name.replace("%n", "1");
+        var name = doc.name + " " + Math.random() * (10000 - 1) + 1;
         tempDevice.apiVersion = "rciots.com/v1";
         tempDevice.kind = "EdgeDevice";
         tempDevice.metadata = {};
