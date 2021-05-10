@@ -95,7 +95,6 @@ var searchtemplate = function (data, callback){
                 return callback("template_not_found");
             }
             var buffer = Buffer.concat(datareq);
-            console.log(buffer);
             return callback(JSON.parse(buffer).spec);
         });
         req.on('error', error => {
@@ -112,7 +111,6 @@ var searchdevice = function(data, callback){
     const req = https.request(optionsConn, res => {
         var datareq = [];
         res.on('data', d => {
-            console.log(res);
           datareq.push(d);
         }).on('end', function() {
             //at this point data is an array of Buffers
