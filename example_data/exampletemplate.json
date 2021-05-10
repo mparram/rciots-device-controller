@@ -1,0 +1,96 @@
+[{
+	"_id": "asd001",
+	"uid": "test.user/template001",
+	"name": "template001",
+	"device_name": "device %n",
+	"token": "asd001",
+	"owner": "test.user",
+	"description": "Device example",
+	"client": {
+		"interval": 60000
+	},
+	"metrics": [{
+			"name": "gps",
+			"source": "gps",
+			"variable": "gps",
+			"type": "gps",
+			"labels": [{
+				"gps": "true"
+			}]
+		},
+		{
+			"name": "metric01",
+			"source": "dummy",
+			"variable": "metricDummy",
+			"type": "gauge",
+			"labels": [{
+				"dummy": "true"
+			}]
+		},
+		{
+			"name": "temperature",
+			"source": "dht",
+			"variable": "temperature",
+			"type": "gauge",
+			"labels": [{
+				"temperature": "true"
+			}]
+		},
+		{
+			"name": "humidity",
+			"source": "dht",
+			"variable": "humidity",
+			"type": "gauge",
+			"labels": [{
+				"humidity": "true"
+			}]
+		}
+	]
+}, {
+	"_id": "01fa9458b60c46d6",
+	"uid": "test.user/rciotscli002",
+	"name": "rciotscli002",
+	"device_name": "device %n",
+	"token": "01fa9458b60c46d6",
+	"owner": "test.user",
+	"description": "FedoraIoT on RPi",
+	"client": {
+		"interval": 60000
+	},
+	"plugins": [{
+		"source": "dockercompose",
+		"name": "quarkus-getting-started",
+		"composefile": "version: '3.7'\nservices:\n  quarkus:\n    image: quay.io/abattagl/quarkus-getting-started:1-aarch64\n    restart: always\n    volumes:\n        - volume_quarkus:/data\n    ports:\n        - 8090:8080\nvolumes:\n    volume_quarkus:",
+		"env": {
+			"quarkus": {
+				"TEST_ENV": "HELLO_WORLD"
+			}
+		},
+		"status": {
+			"date": "",
+			"message": ""
+		}
+	},
+	{
+		"source": "metrics",
+		"name": "metrics",
+		"interval": 20,
+		"metrics": [
+            {
+                "name": "metric01",
+                "source": "dummy",
+                "variable": "metricDummy",
+                "type": "gauge",
+                "labels": [
+                    {
+                        "dummy": "true"
+                    }
+                ]
+            }
+        ],
+		"status": {
+			"date": "",
+			"message": ""
+		}
+	}]
+}]

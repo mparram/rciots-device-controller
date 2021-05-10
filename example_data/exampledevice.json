@@ -1,0 +1,15 @@
+[{
+	"name": "FedoraIoT",
+	"_id": "3766705eb195582e8168a9a1b913c7c7",
+	"hwid": "3766705eb195582e8168a9a1b913c7c7",
+	"token": "01fa9458b60c46d6",
+	"description": "Device example",
+	"owner": "test.user"
+}, {
+	"name": "RPi001",
+	"_id": "157ce02e82e641ed82a7ee683d290d20",
+	"hwid": "157ce02e82e641ed82a7ee683d290d20",
+	"token": "asd001",
+	"description": "Raspberry PI 4",
+	"owner": "test.user"
+}]

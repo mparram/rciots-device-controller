@@ -1,0 +1,45 @@
+apiVersion: rciots.com/v1
+kind: EdgeTemplate
+metadata:
+  name: 01fa9458b60c46d6
+spec:
+  client:
+    interval: 60000
+  description: FedoraIoT on RPi
+  devicename: device
+  owner: test.user
+  plugins:
+    - composefile: |-
+        version: '3.7'
+        services:
+          quarkus:
+            image: quay.io/abattagl/quarkus-getting-started:1-aarch64
+            restart: always
+            volumes:
+                - volume_quarkus:/data
+            ports:
+                - 8090:8080
+        volumes:
+            volume_quarkus:
+      env:
+        quarkus:
+          TEST_ENV: HELLO_WORLD
+      name: quarkus-getting-started
+      source: dockercompose
+      status:
+        date: ''
+        message: ''
+    - interval: 20
+      metrics:
+        - labels:
+            - dummy: 'true'
+          name: metric01
+          source: dummy
+          type: gauge
+          variable: metricDummy
+      name: metrics
+      source: metrics
+      status:
+        date: ''
+        message: ''
+  token: 01fa9458b60c46d6

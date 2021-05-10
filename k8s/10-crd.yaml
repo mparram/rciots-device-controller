@@ -1,0 +1,122 @@
+kind: CustomResourceDefinition
+apiVersion: apiextensions.k8s.io/v1
+metadata:
+  name: edgetemplates.rciots.com
+  annotations:
+    description: Configure templates for edgeDevices
+    displayName: edgeTemplate
+spec:
+  group: rciots.com
+  names:
+    plural: edgetemplates
+    singular: edgetemplate
+    kind: EdgeTemplate
+    listKind: EdgeTemplateList
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          description: EdgeTemplate is the extension to create devices templates.
+          type: object
+          required:
+            - spec
+          properties:
+            apiVersion:
+              description: >-
+                APIVersion defines the versioned schema of this representation
+                of an object. Servers should convert recognized schemas to the
+                latest internal value, and may reject unrecognized values. More
+                info:
+                https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+              type: string
+            kind:
+              description: >-
+                Kind is a string value representing the REST resource this
+                object represents. Servers may infer this from the endpoint the
+                client submits requests to. Cannot be updated. In CamelCase.
+                More info:
+                https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+              type: string
+            metadata:
+              type: object
+              properties:
+                name:
+                  type: string
+                  pattern: '^[0-9a-f]{16}$'
+            spec:
+              description: EdgeTemplateSpec template definition
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+---
+kind: CustomResourceDefinition
+apiVersion: apiextensions.k8s.io/v1
+metadata:
+  name: edgedevices.rciots.com
+  annotations:
+    description: Manage devices from OCP Console
+    displayName: edgeDevice
+spec:
+  group: rciots.com
+  names:
+    plural: edgedevices
+    singular: edgedevice
+    kind: EdgeDevice
+    listKind: EdgeDeviceList
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          description: EdgeDevice is the extension to manage devices.
+          type: object
+          required:
+            - spec
+          properties:
+            apiVersion:
+              description: >-
+                APIVersion defines the versioned schema of this representation
+                of an object. Servers should convert recognized schemas to the
+                latest internal value, and may reject unrecognized values. More
+                info:
+                https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+              type: string
+            kind:
+              description: >-
+                Kind is a string value representing the REST resource this
+                object represents. Servers may infer this from the endpoint the
+                client submits requests to. Cannot be updated. In CamelCase.
+                More info:
+                https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: EdgeDeviceSpec device definition
+              type: object
+              required:
+                - hwid
+              properties:
+                description:
+                  description: devices description
+                  type: string
+                hwid:
+                  description: hardware ID of the device
+                  type: string
+                name:
+                  description: name of the device
+                  type: string
+                owner:
+                  description: user owner of the device
+                  type: string
+                token:
+                  description: link to template UID
+                  type: string
+              x-kubernetes-preserve-unknown-fields: true
+            status:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
