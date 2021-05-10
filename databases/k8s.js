@@ -112,6 +112,7 @@ var searchdevice = function(data, callback){
     const req = https.request(optionsConn, res => {
         var datareq = [];
         res.on('data', d => {
+            console.log(res);
             if (res.statusCode == "404"){
                 return callback("device_not_found");
             }
