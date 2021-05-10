@@ -4,6 +4,7 @@ const app = express();
 const httpServer = require("http").createServer(app);
 const port = 8080;
 const io = require("socket.io")(httpServer);
+io.set('transports', ['xhr-polling','polling', 'websocket']);
 if ((!process.env.DATABASE_TYPE) || (process.env.DATABASE_TYPE = "")) {
     //default k8s
     var databaseType = "k8s";
