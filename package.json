@@ -1,14 +1,20 @@
 {
-  "name": "couchdb-cli",
-  "version": "1.0.0",
-  "description": "",
+  "name": "rciots-device-controller",
+  "version": "0.0.1",
+  "description": "NodeJS app to run on Openshift to manage edgeDevices from Openshift Console as CRs.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Mario Parra",
+    "email": "mparram@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mparram/rciots-device-controller"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^4.0.1"
