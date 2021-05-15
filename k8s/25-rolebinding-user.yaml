@@ -2,7 +2,6 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: device-controller-userX
-  namespace: user2-qiothackfest
 subjects:
   - kind: User
     apiGroup: rbac.authorization.k8s.io
