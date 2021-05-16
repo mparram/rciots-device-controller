@@ -5,7 +5,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: device-controller
-    namespace: --NAMESPACE--
+    namespace: ${NAMESPACE}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

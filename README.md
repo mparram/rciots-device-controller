@@ -1,4 +1,4 @@
-# RCIOTS client NodeJS
+# RCIOTS Device Controller
 ## Remote Control service to manage IOT devices from K8s or Openshift.
 
 ### Introduction
@@ -62,9 +62,24 @@ oc apply -f /k8s/30-serviceaccount.yaml
 
 # *"/k8s/40-rolebinding.yaml":*
 
-Grant permissions to the service account over the Custom Resources.
+Grant permissions to the service account over the Custom Resources. Need to update ${NAMESPACE}
 
 # *"/k8s/50-edgetemplate.yaml":*
 
 Example template to run docker-compose and collect a dummy metric
+
+
+# *"/k8s/60-pipeline.yaml":*
+
+Tekton pipeline to build this repo in Opensource. Need to update ${NAMESPACE}
+
+
+# *"/k8s/70-deployment.yaml":*
+
+Deployment from pipeline image
+
+
+
+
+
 
