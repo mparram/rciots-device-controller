@@ -6,10 +6,7 @@ metadata:
     app: device-controller
     app.kubernetes.io/component: device-controller
     app.kubernetes.io/instance: device-controller
-    app.kubernetes.io/name: nodejs
     app.kubernetes.io/part-of: device-controller
-    app.openshift.io/runtime: nodejs
-    app.openshift.io/runtime-version: 14-ubi8
 spec:
   replicas: 1
   selector:
@@ -20,17 +17,16 @@ spec:
       labels:
         app: device-controller
         deploymentconfig: device-controller
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
     spec:
       containers:
         - name: device-controller
           image: >-
-            image-registry.openshift-image-registry.svc:5000/${NAMESPACE}/device-controller
+            quay.io/mparra/rciots:latest
           ports:
             - containerPort: 8080
               protocol: TCP
-          env:
-            - name: NAMESPACE
-              value: ${NAMESPACE}
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
@@ -38,8 +34,6 @@ spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
-      serviceAccountName: device-controller
-      serviceAccount: device-controller
       securityContext: {}
       schedulerName: default-scheduler
   strategy:

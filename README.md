@@ -28,55 +28,51 @@ oc new-project rciots
 
 ### Create Openshift Objects:
 
-# *"/k8s/10-crd.yaml":*
+***"/k8s/10-crd.yaml":***
 
 In this yaml are defined the required Custom Respource Definitions "edgeTemplate" and "edgeDevice"
 
-```
-oc apply -f /k8s/10-crd.yaml
-```
-
-# *"/k8s/20-role.yaml":*
+***"/k8s/20-role.yaml":***
 
 Role to access just to our custom resources in the namespace
 
-```
-oc apply -f /k8s/20-role.yaml
-```
-
-# *"/k8s/25-rolebinding-user.yaml":*
-
-**OPTIONAL** If you want to grant access to custom resources to a user, edit the username and apply it, if the users are cluster:admin doesn't require this yaml
-
-```
-oc apply -f /k8s/25-rolebinding-user.yaml
-```
-
-# *"/k8s/30-serviceaccount.yaml":*
+***"/k8s/30-serviceaccount.yaml":***
 
 Service account required to query Openshift API from the device-controller
 
-```
-oc apply -f /k8s/30-serviceaccount.yaml
-```
+***"/k8s/40-rolebinding.yaml":***
 
-# *"/k8s/40-rolebinding.yaml":*
+Grant permissions to the service account over the Custom Resources. **Need to update ${NAMESPACE}**
 
-Grant permissions to the service account over the Custom Resources. Need to update ${NAMESPACE}
-
-# *"/k8s/50-edgetemplate.yaml":*
+***"/k8s/50-edgetemplate.yaml":***
 
 Example template to run docker-compose and collect a dummy metric
 
+***"/k8s/60-deployment.yaml":***
 
-# *"/k8s/60-pipeline.yaml":*
+Deployment from quay image
 
-Tekton pipeline to build this repo in Opensource. Need to update ${NAMESPACE}
+***"/k8s/70-service.yaml":***
+
+Service to grant access to the pod
+
+***"/k8s/80-route.yaml":***
+
+Expose the service with edgeTLS HTTPS route.
+
+**OPTIONAL** ***"/k8s/10-rolebinding-user.yaml":***
+
+If you want to grant access to custom resources to a user, edit the username and apply it, if the users are cluster:admin doesn't require this yaml.
+
+**OPTIONAL** ***"/k8s/pipeline/10-pipeline.yaml":***
+
+Tekton pipeline to build this repo in Opensource. Need to update ${NAMESPACE} and apply apart of next command.
 
 
-# *"/k8s/70-deployment.yaml":*
-
-Deployment from pipeline image
+**To apply all the K8s directory except optionals:**
+```
+oc apply -f /k8s
+```
 
 
 

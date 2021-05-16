@@ -1,0 +1,22 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: device-controller
+  labels:
+    app: device-controller
+    app.kubernetes.io/component: device-controller
+    app.kubernetes.io/instance: device-controller
+    app.kubernetes.io/name: nodejs
+    app.kubernetes.io/part-of: device-controller
+    app.openshift.io/runtime: nodejs
+    app.openshift.io/runtime-version: 14-ubi8
+spec:
+  ports:
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: device-controller
+    deploymentconfig: device-controller
+  type: ClusterIP

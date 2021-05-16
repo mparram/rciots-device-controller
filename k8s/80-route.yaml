@@ -1,0 +1,23 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: device-controller
+  labels:
+    app: device-controller
+    app.kubernetes.io/component: device-controller
+    app.kubernetes.io/instance: device-controller
+    app.kubernetes.io/name: nodejs
+    app.kubernetes.io/part-of: device-controller
+    app.openshift.io/runtime: nodejs
+    app.openshift.io/runtime-version: 14-ubi8
+spec:
+  to:
+    kind: Service
+    name: device-controller
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
+  wildcardPolicy: None
